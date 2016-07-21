@@ -1,13 +1,11 @@
 package com.qingao.hello;
 
-import java.util.Arrays;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.*;
+
+import java.util.Arrays;
 
 @Import(MyConfig.class)
 @SpringBootApplication
@@ -24,7 +22,7 @@ public class Application {
         for (String beanName : beanNames) {
             System.out.println(beanName);
         }
-	System.out.println(ctx.getBean("dataList"));
+        System.out.println(ctx.getBean("dataList"));
     }
 
 }
