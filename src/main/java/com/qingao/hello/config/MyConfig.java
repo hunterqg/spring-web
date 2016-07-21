@@ -1,4 +1,4 @@
-package com.qingao.hello;
+package com.qingao.hello.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -23,7 +23,7 @@ public class MyConfig {
         list.add("four");
         list.add("five");
         list.add("six");
-        list.add(env.getProperty("key_seven"));
+        list.add(env.getProperty("key_seven","default_seven"));
         return list;
     }
 

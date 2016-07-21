@@ -1,5 +1,6 @@
 package com.qingao.hello;
 
+import com.qingao.hello.controller.HelloController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

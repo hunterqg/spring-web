@@ -1,5 +1,6 @@
 package com.qingao.hello;
 
+import com.qingao.hello.config.MyConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
