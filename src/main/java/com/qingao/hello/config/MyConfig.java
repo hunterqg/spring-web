@@ -16,7 +16,8 @@ public class MyConfig {
     @Bean(name = "dataList")
     @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
     public ArrayList<String> getDataList() {
-        ArrayList<String> list = new ArrayList<String>();
+        System.out.println("--------> init dataList");
+        ArrayList<String> list = new ArrayList<>();
         list.add("one");
         list.add("two");
         list.add("three");
@@ -27,6 +28,6 @@ public class MyConfig {
         return list;
     }
 
-    @Autowired
+    @Autowired(required = true)
     Environment env;
 }

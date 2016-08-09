@@ -31,6 +31,7 @@ public class HelloController {
 
     @RequestMapping("/cfg")
     public String config() {
+        System.out.println("-------->" + env);
         return env.getProperty("key_seven");
     }
 }
