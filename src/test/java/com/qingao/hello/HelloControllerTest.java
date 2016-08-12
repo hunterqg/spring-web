@@ -24,6 +24,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 //@ContextConfiguration(classes = {MyConfig.class})
 @SpringApplicationConfiguration(classes = {/*MyConfig.class,*/MockServletContext.class,})
@@ -39,6 +40,7 @@ public class HelloControllerTest {
     private HelloController helloController;
     @Autowired
     protected ApplicationContext ctx;
+
     @Before
     public void setUp() throws Exception {
 
@@ -62,7 +64,7 @@ public class HelloControllerTest {
 */
 
     @Test
-    public void getConfig() throws  Exception{
+    public void getConfig() throws Exception {
         Mockito.when(env.getProperty("key_seven")).thenReturn("seven");
         mvc.perform(MockMvcRequestBuilders.get("/cfg").accept(MediaType.ALL))
                 .andExpect(status().isOk())
