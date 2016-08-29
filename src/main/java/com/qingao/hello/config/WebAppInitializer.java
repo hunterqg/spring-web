@@ -31,7 +31,6 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         return new String[]{"/"};
     }
 
-
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         super.onStartup(servletContext);
@@ -66,10 +65,10 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         dynamic.addMappingForUrlPatterns(null,false,"/*");
 
     }
-
-    @Override
+/*    @Override
     protected void customizeRegistration(ServletRegistration.Dynamic registration) {
         super.customizeRegistration(registration);
-        registration.setMultipartConfig(new MultipartConfigElement("/tmp/web/uploads"));
-    }
+        registration.setMultipartConfig(new MultipartConfigElement("/tmp/web/uploads",2*1024*1024,4*1024*1024,0));
+    }*/
+
 }

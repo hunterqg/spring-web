@@ -16,6 +16,15 @@
     <logger name="com.qingao.hello" level="debug" additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>
+    <logger name="org.springframework.security.web" level="debug" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+    <logger name="org.springframework.jdbc.core" level="debug" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+    <logger name="org.springframework.jdbc.core.StatementCreatorUtils" level="trace" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
 
     <root level="error">
         <appender-ref ref="STDOUT" />
