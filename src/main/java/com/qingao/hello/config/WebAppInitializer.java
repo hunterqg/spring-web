@@ -34,7 +34,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         super.onStartup(servletContext);
-        Filter timeFilter = new Filter() {
+        /*Filter timeFilter = new Filter() {
             @Override
             public void init(FilterConfig filterConfig) throws ServletException {
                 logger.debug("xFilter init....");
@@ -60,12 +60,41 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         };
         //Filter for request
         Filter characterEncodingFilter = new CharacterEncodingFilter("UTF-8",true);
-        servletContext.addFilter("encoding-filter", characterEncodingFilter).addMappingForUrlPatterns(null,false,"/*");
+        servletContext.addFilter("encoding-filter", characterEncodingFilter).addMappingForUrlPatterns(null,false,"*//*");
         FilterRegistration.Dynamic dynamic = servletContext.addFilter("xFilter", timeFilter);
-        dynamic.addMappingForUrlPatterns(null,false,"/*");
-
+        dynamic.addMappingForUrlPatterns(null,false,"*//*");
+*/
     }
-/*    @Override
+
+    @Override
+    protected Filter[] getServletFilters() {
+        return new Filter[]{new CharacterEncodingFilter("UTF-8",true),new Filter() {
+            @Override
+            public void init(FilterConfig filterConfig) throws ServletException {
+                logger.debug("xFilter init....");
+            }
+
+            @Override
+            public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+                    throws IOException, ServletException {
+                long startTime = System.currentTimeMillis();
+                logger.debug("doing xFilter");
+                chain.doFilter(request,response);
+                if (request instanceof HttpServletRequest) {
+                    String msg = String.format("Finish request : %s ; consumed %dms",
+                            ((HttpServletRequest) request).getRequestURL(),(System.currentTimeMillis()-startTime) );
+                    logger.debug(msg);
+                }
+            }
+
+            @Override
+            public void destroy() {
+                logger.debug("xFilter destroyed");
+            }
+        }
+        };
+    }
+    /*    @Override
     protected void customizeRegistration(ServletRegistration.Dynamic registration) {
         super.customizeRegistration(registration);
         registration.setMultipartConfig(new MultipartConfigElement("/tmp/web/uploads",2*1024*1024,4*1024*1024,0));

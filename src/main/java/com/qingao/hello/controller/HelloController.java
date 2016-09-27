@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 @RestController
 public class HelloController {
@@ -32,8 +34,9 @@ public class HelloController {
     }
 
     @RequestMapping("/{id}")
-    public String user(@PathVariable Integer id) {
-        return ""+userDao.getUser(id);
+    @ResponseBody
+    public Map user(@PathVariable Integer id) {
+        return userDao.getUser(id);
     }
 
     @RequestMapping("/hello")

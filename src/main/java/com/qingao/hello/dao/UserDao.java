@@ -5,11 +5,14 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 /**
@@ -22,10 +25,12 @@ public class UserDao {
     private NamedParameterJdbcTemplate jdbcTemplate;
 
 
-    @Secured("ROLE_ADMIN")
+    @Secured({"ROLE_ADMIN","ROLE_USER"})
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Map getUser(Integer id) {
         Map<String,Integer> map = new HashMap<>();
         map.put("id",id);
+        HashSet arrayList;
         return jdbcTemplate.queryForObject("select * from user where id=:id", map, new RowMapper<Map>() {
             @Override
             public Map mapRow(ResultSet rs, int rowNum) throws SQLException {
