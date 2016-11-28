@@ -16,6 +16,7 @@ import java.io.IOException;
 @Configuration
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[]{RootConfig.class};
@@ -23,7 +24,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[] {MyConfig.class};
+        return new Class<?>[]{MyConfig.class};
     }
 
     @Override
@@ -34,41 +35,11 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         super.onStartup(servletContext);
-        /*Filter timeFilter = new Filter() {
-            @Override
-            public void init(FilterConfig filterConfig) throws ServletException {
-                logger.debug("xFilter init....");
-            }
-
-            @Override
-            public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-                    throws IOException, ServletException {
-                long startTime = System.currentTimeMillis();
-                logger.debug("doing xFilter");
-                chain.doFilter(request,response);
-                if (request instanceof HttpServletRequest) {
-                    String msg = String.format("Finish request : %s ; consumed %dms",
-                            ((HttpServletRequest) request).getRequestURL(),(System.currentTimeMillis()-startTime) );
-                    logger.debug(msg);
-                }
-            }
-
-            @Override
-            public void destroy() {
-                logger.debug("xFilter destroyed");
-            }
-        };
-        //Filter for request
-        Filter characterEncodingFilter = new CharacterEncodingFilter("UTF-8",true);
-        servletContext.addFilter("encoding-filter", characterEncodingFilter).addMappingForUrlPatterns(null,false,"*//*");
-        FilterRegistration.Dynamic dynamic = servletContext.addFilter("xFilter", timeFilter);
-        dynamic.addMappingForUrlPatterns(null,false,"*//*");
-*/
     }
 
     @Override
     protected Filter[] getServletFilters() {
-        return new Filter[]{new CharacterEncodingFilter("UTF-8",true),new Filter() {
+        return new Filter[]{new CharacterEncodingFilter("UTF-8", true), new Filter() {
             @Override
             public void init(FilterConfig filterConfig) throws ServletException {
                 logger.debug("xFilter init....");
@@ -79,10 +50,10 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
                     throws IOException, ServletException {
                 long startTime = System.currentTimeMillis();
                 logger.debug("doing xFilter");
-                chain.doFilter(request,response);
+                chain.doFilter(request, response);
                 if (request instanceof HttpServletRequest) {
                     String msg = String.format("Finish request : %s ; consumed %dms",
-                            ((HttpServletRequest) request).getRequestURL(),(System.currentTimeMillis()-startTime) );
+                            ((HttpServletRequest) request).getRequestURL(), (System.currentTimeMillis() - startTime));
                     logger.debug(msg);
                 }
             }
