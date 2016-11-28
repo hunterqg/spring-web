@@ -1,5 +1,6 @@
 package com.qingao.hello.config;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -24,6 +25,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 @Configuration
@@ -31,6 +33,7 @@ import java.util.ArrayList;
 @ComponentScan("com.qingao.hello")
 @PropertySource("classpath:env.properties")
 public class MyConfig extends WebMvcConfigurerAdapter{
+    private static Logger logger = Logger.getLogger(MyConfig.class);
     @Bean(name = "dataList")
     @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
     public ArrayList<String> getDataList() {
@@ -76,6 +79,7 @@ public class MyConfig extends WebMvcConfigurerAdapter{
     @Qualifier("jdbcTemplate")
     public NamedParameterJdbcTemplate namedParameterJdbcTemplate(DataSource dataSource) {
         NamedParameterJdbcTemplate jt = new NamedParameterJdbcTemplate(dataSource);
+
         return jt;
     }
 }

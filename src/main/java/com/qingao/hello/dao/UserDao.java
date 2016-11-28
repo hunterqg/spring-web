@@ -25,13 +25,13 @@ public class UserDao {
     private NamedParameterJdbcTemplate jdbcTemplate;
 
 
-    @Secured({"ROLE_ADMIN","ROLE_USER"})
+//    @Secured({"ROLE_ADMIN","ROLE_USER"})
 //    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Map getUser(Integer id) {
         Map<String,Integer> map = new HashMap<>();
         map.put("id",id);
         HashSet arrayList;
-        return jdbcTemplate.queryForObject("select * from user where id=:id", map, new RowMapper<Map>() {
+        return jdbcTemplate.queryForObject("select * from person where id=:id", map, new RowMapper<Map>() {
             @Override
             public Map mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Map rMap = new HashMap();
