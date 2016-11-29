@@ -1,6 +1,7 @@
 package com.qingao.hello.controller;
 
 import com.qingao.hello.dao.UserDao;
+import com.qingao.hello.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.env.Environment;
@@ -35,7 +36,7 @@ public class HelloController {
 
     @RequestMapping("/{id}")
     @ResponseBody
-    public Map user(@PathVariable Integer id) {
+    public User user(@PathVariable Integer id) {
         return userDao.getUser(id);
     }
 
