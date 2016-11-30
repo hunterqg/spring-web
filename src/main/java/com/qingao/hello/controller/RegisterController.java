@@ -19,7 +19,7 @@ import java.util.Map;
  * Created by qingao on 16-8-10.
  */
 
-@Controller
+//@Controller
 public class RegisterController {
     @Autowired
     private UserDao userDao;

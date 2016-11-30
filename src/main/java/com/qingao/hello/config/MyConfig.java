@@ -31,23 +31,8 @@ import java.util.ArrayList;
 @Configuration
 @EnableWebMvc
 @ComponentScan("com.qingao.hello")
-@PropertySource("classpath:env.properties")
 public class MyConfig extends WebMvcConfigurerAdapter{
     private static Logger logger = Logger.getLogger(MyConfig.class);
-    @Bean(name = "dataList")
-    @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
-    public ArrayList<String> getDataList() {
-        System.out.println("--------> init dataList");
-        ArrayList<String> list = new ArrayList<>();
-        list.add("one");
-        list.add("two");
-        list.add("three");
-        list.add("four");
-        list.add("five");
-        list.add("six");
-        list.add(env.getProperty("key_seven","default_seven"));
-        return list;
-    }
 
     @Autowired(required = true)
     Environment env;

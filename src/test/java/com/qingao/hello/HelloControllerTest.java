@@ -63,11 +63,11 @@ public class HelloControllerTest {
 	}
 */
 
-    @Test
+/*    @Test
     public void getConfig() throws Exception {
         Mockito.when(env.getProperty("key_seven")).thenReturn("seven");
         mvc.perform(MockMvcRequestBuilders.get("/cfg").accept(MediaType.ALL))
                 .andExpect(status().isOk())
                 .andExpect(content().string(equalTo("seven")));
-    }
+    }*/
 }
