@@ -1,3 +1,11 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'war'
+//apply plugin: 'jetty'
+apply plugin: 'org.akhikhl.gretty'
+
 buildscript {
     repositories {
         mavenCentral()
@@ -8,21 +16,15 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'spring-boot'
-apply plugin: 'war'
-//apply plugin: 'jetty'
-apply plugin: 'org.akhikhl.gretty'
-
 jar {
-    baseName = 'gs-spring-boot'
+    baseName = 'spring-web'
     version = '0.1.0'
 }
 
 repositories {
     mavenCentral()
+    //for spring-data-keyvalue
+    maven {url "https://artifacts.alfresco.com/nexus/content/repositories/public/"}
 }
 
 sourceCompatibility = 1.7
@@ -41,8 +43,9 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-security")
     compile(group: 'mysql', name: 'mysql-connector-java', version: '5.1.40')
-//    compile(group: 'org.springframework.data', name: 'spring-data-keyvalue', version: '1.1.5.RELEASE')
     compile(group: 'org.springframework.data', name: 'spring-data-redis', version: '1.7.5.RELEASE')
+    compile group: 'redis.clients', name: 'jedis', version: '2.9.0'
+
 /*    compile("org.springframework.security:spring-security-core")
     compile("org.springframework.security:spring-security-web")
     compile("org.springframework.security:spring-security-config")*/
