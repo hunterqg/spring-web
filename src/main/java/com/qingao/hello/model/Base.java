@@ -3,14 +3,18 @@ package com.qingao.hello.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
+import java.util.TimeZone;
 
 /**
  * Created by qingao on 2016/11/28.
  */
 public abstract class Base {
     private Integer id;
-    private Date createAt;
-    private Date updateAt;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss"/*,timezone = "GMT+8"*/)
+    protected Date createAt;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss"/*,timezone = "GMT+8"*/)
+    protected Date updateAt;
 
     public Integer getId() {
         return id;
@@ -19,7 +23,6 @@ public abstract class Base {
     public void setId(Integer id) {
         this.id = id;
     }
-
     public Date getCreateAt() {
         return createAt;
     }
@@ -34,5 +37,9 @@ public abstract class Base {
 
     public void setUpdateAt(Date updateAt) {
         this.updateAt = updateAt;
+    }
+
+    private String getTimeZone() {
+        return TimeZone.getDefault().getID();
     }
 }

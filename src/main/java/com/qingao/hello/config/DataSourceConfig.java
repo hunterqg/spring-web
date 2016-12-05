@@ -57,7 +57,7 @@ public class DataSourceConfig {
     @Value("${jdbc.maxWaitMills:120000}")
     private int maxWaitMills;
 
-    @Value("${jdbc.defaultAutoCommit:false}")
+    @Value("${jdbc.defaultAutoCommit:true}")
     private boolean defaultAutoCommit;
 
     @Value("${jdbc.removeAbandoned:true}")

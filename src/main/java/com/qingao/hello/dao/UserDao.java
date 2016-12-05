@@ -1,5 +1,6 @@
 package com.qingao.hello.dao;
 
+import com.qingao.hello.dao.mapper.UserMapper;
 import com.qingao.hello.model.User;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ import java.util.*;
 @Component
 public class UserDao {
     private static final String SQL_SELECT_USER_BY_ID = "select id,phone,token,uid,height," +
-            "passwd,device_type,create_at,update_at from `user` where id=:id";
+            "passwd,device_type ,create_at ,update_at from `user` where id=:id";
     public static final String SQL_GET_USER_BY_PHONE = "select id,phone,token,uid,height," +
             "passwd,device_type,create_at,update_at from `user` where phone=:phone";
     @Autowired
@@ -33,8 +34,11 @@ public class UserDao {
     private NamedParameterJdbcTemplate jdbcTemplate;
     private static Logger logger = Logger.getLogger(User.class);
 
+    @Autowired
+    UserMapper userMapper;
+
     public User getUser(Integer id) {
-        final User user = new User();
+/*        final User user = new User();
 
         Map<String, Integer> map = new HashMap<>();
         map.put("id", id);
@@ -47,11 +51,12 @@ public class UserDao {
                         resultSetToUser(rs, user);
                         return user;
                     }
-                });
+                });*/
+        return userMapper.getUserById(id);
     }
 
     public User getUserByPhone(String phone) {
-        final User user = new User();
+       /* final User user = new User();
 
         Map<String, String> map = new HashMap<>();
         map.put("phone", phone);
@@ -68,18 +73,19 @@ public class UserDao {
                     });
         } catch (EmptyResultDataAccessException ex) {
             return null;
-        }
-
+        }*/
+        return userMapper.getUserByPhone(phone);
     }
 
     public int insert(User user) {
-        if (user == null) {
+        /*if (user == null) {
             return -1;
         }
         Map<String, Object> map = new HashMap<>();
         String insertSql = getInsertSql(user, map);
 
-        return jdbcTemplate.update(insertSql, map);
+        return jdbcTemplate.update(insertSql, map);*/
+        return userMapper.insertUser(user);
     }
 
     private String getInsertSql(User user, Map<String, Object> map) {
