@@ -28,20 +28,6 @@ public class DataSourceConfig {
     @Value("${jdbc.password}")
     private String passwd;
 
-    /*
-    jdbc.initialSize=5
-    jdbc.minIdle=5
-    jdbc.maxIdle=20
-    jdbc.maxActive=100
-    jdbc.maxWait=100000
-    jdbc.defaultAutoCommit=false
-    jdbc.removeAbandoned=true
-    jdbc.removeAbandonedTimeout=600
-    jdbc.testWhileIdle=true
-    jdbc.timeBetweenEvictionRunsMillis=60000
-    jdbc.numTestsPerEvictionRun=20
-    jdbc.minEvictableIdleTimeMillis=300000
-     */
     @Value("${jdbc.initialSize:5}")
     private int initialSize;
 
@@ -57,7 +43,7 @@ public class DataSourceConfig {
     @Value("${jdbc.maxWaitMills:120000}")
     private int maxWaitMills;
 
-    @Value("${jdbc.defaultAutoCommit:true}")
+    @Value("${jdbc.defaultAutoCommit:false}")
     private boolean defaultAutoCommit;
 
     @Value("${jdbc.removeAbandoned:true}")

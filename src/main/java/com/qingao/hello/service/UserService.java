@@ -5,6 +5,7 @@ import com.qingao.hello.dao.UserDao;
 import com.qingao.hello.model.User;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,7 @@ public class UserService {
                 retMap.put("code", 1);
                 retMap.put("msg", "unknown get sms code type.");
         }
+//        throw new RuntimeException("TTT");
         return retMap;
     }
 
